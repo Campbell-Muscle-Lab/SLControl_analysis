@@ -1288,8 +1288,8 @@ function lc_parameters_table_CreateFcn(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
-path_string = cd;
-parameter_file_string = fullfile(cd,'code/parameters','parameters.xlsx');
+path_string = fileparts(which(mfilename));
+parameter_file_string = fullfile(path_string,'parameters','parameters.xlsx');
 [~,sheets]=xlsfinfo(parameter_file_string);
 d = read_structure_from_excel('filename',parameter_file_string,'Sheet', ...
         sheets{1})
