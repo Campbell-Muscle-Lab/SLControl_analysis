@@ -1277,8 +1277,8 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-path_string = cd;
-parameter_file_string = fullfile(cd,'code/parameters','parameters.xlsx')
+path_string = fileparts(which(mfilename));
+parameter_file_string = fullfile(path_string,'parameters','parameters.xlsx')
 [~,sheets]=xlsfinfo(parameter_file_string)
 set(hObject,'String',sheets);
 
