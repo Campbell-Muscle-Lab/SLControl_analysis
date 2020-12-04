@@ -368,7 +368,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-path_string = cd;
+path_string = fileparts(which(mfilename));
 extract_string = fullfile(path_string,'extract','control_pCa.xlsx')
 set(hObject,'String',extract_string);
 
@@ -1251,8 +1251,8 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-path_string = cd;
-set(hObject,'String',fullfile(path_string,'code/parameters','parameters.xlsx'));
+path_string = fileparts(which(mfilename));
+set(hObject,'String',fullfile(path_string,'parameters','parameters.xlsx'));
 
 % --- Executes on selection change in lc_parameter_options.
 function lc_parameter_options_Callback(hObject, eventdata, handles)
@@ -1339,7 +1339,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-path_string = cd;
+path_string = fileparts(which(mfilename));
 set(hObject,'String',fullfile(path_string,'normalization','pH_70_no_ADP_no_Pi.xlsx'));
 
 % --- Executes on button press in lc_collate_normalization_push.
