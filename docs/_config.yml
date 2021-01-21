@@ -6,7 +6,8 @@ aux_links:
   - "http://www.campbellmusclelab.org"
   "Lab GitHub":
   - "http://campbell-muscle-lab.github.io"
-
+  "SLControl analysis":
+  - "http://github.com/Campbell-Muscle-Lab/SLControl analysis"
 
 # Not a big fan of dark mode. I think the light looks better.
 # color_scheme: "dark"

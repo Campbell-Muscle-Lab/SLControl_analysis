@@ -20,7 +20,7 @@ Here's the big picture:
 
 ## Strong recommendation
 
-Run your analysis *incrementally* until you get the hang of it because it is relatively easy to trouble an analysis that only includes a few files, and quite challenging to troubleshoot a large project.
+Run your analysis *incrementally* until you get the hang of it because it is relatively easy to troubleshoot an analysis that only includes a few files, and quite challenging to troubleshoot a large project.
 
 To run incrementally:
 + Test your analysis for each preparation by itself
