@@ -85,7 +85,7 @@ if (no_of_slc_files==0)
     return
 end
 
-slc_files=slc_files
+slc_files=slc_files'
 
 % Pre-screen for conditions
 display_string=sprintf('Pre-screening %i files', ...
@@ -152,7 +152,11 @@ for file_counter=1:length(selected_files)
     end
 
     % Transform
-    td=transform_slcontrol_record(d);
+    if (~isfield(d, 'ktr_initiation_time_ms'))
+        td = transform_slcontrol_record(d, -1);
+    else
+        td=transform_slcontrol_record(d);
+    end
         
     display_slcontrol_record(td,raw_display_figure_window);
 
@@ -169,7 +173,7 @@ for file_counter=1:length(selected_files)
         'spike_window',spike_window ...
         );
     
-    if (include_stiffness_analysis)
+    if (include_stiffness_analysis) && (td.no_of_triangles > 0)
         % Stiffness analysis
         % Figure 3, initial_fitting_time, 50 ms
         stiffness_results=analyse_stiffness_parsed( ...

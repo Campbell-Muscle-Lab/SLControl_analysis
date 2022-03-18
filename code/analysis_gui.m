@@ -265,6 +265,14 @@ function lc_analysis_analyze_folder_push_Callback(hObject, eventdata, handles)
         vi = find(strcmp(parameter_strings,'apply_smoothing_for_regression'));
         apply_smoothing_for_regression = parameter_values(vi);
         
+        vi = find(strcmp(parameter_strings,'velocity_criterion_min'));
+        if (~isempty(vi))
+            velocity_criterion_min = parameter_values(vi);
+        else
+            velocity_criterion_min = [];
+        end
+            
+        
         % Run analysis
         analyse_slc_files_command_line( ...
             'top_data_folder_string',top_data_folder_string, ...
@@ -275,7 +283,8 @@ function lc_analysis_analyze_folder_push_Callback(hObject, eventdata, handles)
             'second_fitting_time',second_fit_time, ...
             'spike_window',spike_window, ...
             'stiffness_smoothing_window',stiffness_smoothing_window, ...
-            'apply_smoothing_for_regression',apply_smoothing_for_regression);
+            'apply_smoothing_for_regression',apply_smoothing_for_regression, ...
+            'velocity_criterion_min',velocity_criterion_min);
 
 function lc_collate_data_edit_Callback(hObject, eventdata, handles)
 % hObject    handle to lc_collate_data_edit (see GCBO)

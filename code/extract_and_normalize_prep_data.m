@@ -99,25 +99,30 @@ for prep_counter=1:length(preps)
                 pCa45_indices,prep_data.P_ss(pCa90_indices));
             P_ss_90 = out.intercept + file_counter*out.slope;
             
-            % SREC_YM1_SL
-            if (~isnan(prep_data.SREC_YM1_SL(pCa90_indices(1))))
+            if (isfield(prep_data, 'SREC_YM1_SL'))
+                % SREC_YM1_SL
+                if (~isnan(prep_data.SREC_YM1_SL(pCa90_indices(1))))
+                    out = fit_linear_model( ...
+                        pCa90_indices,prep_data.SREC_YM1_SL(pCa90_indices));
+                    SREC_YM1_SL_90 = out.intercept + file_counter*out.slope;
+                else
+                    SREC_YM1_SL_90 = NaN;
+                end
+
+                % SREC_YM1_FL
                 out = fit_linear_model( ...
-                    pCa90_indices,prep_data.SREC_YM1_SL(pCa90_indices));
-                SREC_YM1_SL_90 = out.intercept + file_counter*out.slope;
-            else
-                SREC_YM1_SL_90 = NaN;
+                    pCa90_indices,prep_data.SREC_YM1_FL(pCa90_indices));
+                SREC_YM1_FL_90 = out.intercept + file_counter*out.slope;
             end
-            
-            % SREC_YM1_FL
-            out = fit_linear_model( ...
-                pCa90_indices,prep_data.SREC_YM1_FL(pCa90_indices));
-            SREC_YM1_FL_90 = out.intercept + file_counter*out.slope;
         else
             pCa90_trial=set_normalizing_trial_number(file_counter, ...
                 pCa90_indices,params.pCa90_normalizing_mode);
             P_ss_90 = prep_data.P_ss(pCa90_trial);
-            SREC_YM1_SL_90 = prep_data.SREC_YM1_SL(pCa90_trial);
-            SREC_YM1_FL_90 = prep_data.SREC_YM1_FL(pCa90_trial);
+            
+            if (isfield(prep_data, 'SREC_YM1_SL'))
+                SREC_YM1_SL_90 = prep_data.SREC_YM1_SL(pCa90_trial);
+                SREC_YM1_FL_90 = prep_data.SREC_YM1_FL(pCa90_trial);
+            end
         end
         
         if (strcmp(params.pCa45_normalizing_mode,'interpolation'))
@@ -137,26 +142,31 @@ for prep_counter=1:length(preps)
             k_tr_45 = out.intercept + file_counter*out.slope;
             
             % SREC_YM1_SL
-            if (~isnan(prep_data.SREC_YM1_SL(pCa45_indices(1))))
-                out = fit_linear_model( ...
-                    pCa45_indices,prep_data.SREC_YM1_SL(pCa45_indices));
-                SREC_YM1_SL_45 = out.intercept + file_counter*out.slope;
-            else
-                SREC_YM1_SL_45 = NaN;
-            end
+            if (isfield(prep_data, 'SREC_YM1_SL'))
+                if (~isnan(prep_data.SREC_YM1_SL(pCa45_indices(1))))
+                    out = fit_linear_model( ...
+                        pCa45_indices,prep_data.SREC_YM1_SL(pCa45_indices));
+                    SREC_YM1_SL_45 = out.intercept + file_counter*out.slope;
+                else
+                    SREC_YM1_SL_45 = NaN;
+                end
             
-            % SREC_YM1_FL
-            out = fit_linear_model( ...
-                pCa45_indices,prep_data.SREC_YM1_FL(pCa45_indices));
-            SREC_YM1_FL_45 = out.intercept + file_counter*out.slope;
+                % SREC_YM1_FL
+                out = fit_linear_model( ...
+                    pCa45_indices,prep_data.SREC_YM1_FL(pCa45_indices));
+                SREC_YM1_FL_45 = out.intercept + file_counter*out.slope;
+            end
         else
             pCa45_trial=set_normalizing_trial_number(file_counter, ...
                 pCa45_indices,params.pCa45_normalizing_mode);
             P_ss_45 = prep_data.P_ss(pCa45_trial);
             k_half_45 = prep_data.k_half(pCa45_trial);
             k_tr_45 = prep_data.k_tr(pCa45_trial);
-            SREC_YM1_SL_45 = prep_data.SREC_YM1_SL(pCa45_trial);
-            SREC_YM1_FL_45 = prep_data.SREC_YM1_FL(pCa45_trial);
+            
+            if (isfield(prep_data, 'SREC_YM1_SL'))
+                SREC_YM1_SL_45 = prep_data.SREC_YM1_SL(pCa45_trial);
+                SREC_YM1_FL_45 = prep_data.SREC_YM1_FL(pCa45_trial);
+            end
         end
         
         % Relative values
